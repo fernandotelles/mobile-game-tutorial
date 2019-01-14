@@ -6,7 +6,8 @@ document.addEventListener('deviceready', function() {
         height: 400,
         scene: {
             preload: preload,
-            create: create
+            create: create,
+            update: update
         }
     };
     
@@ -26,7 +27,7 @@ document.addEventListener('deviceready', function() {
             frames: this.anims.generateFrameNames('sheet', { start: 1,  end: 3, prefix: 'planeBlue', suffix: '.png' })
         });
 
-        this.add.image(0, 0, 'sheet', 'background.png').setOrigin(0);
+        this.bg = this.add.tileSprite(0, 0, 800, 480, 'sheet', 'background.png').setOrigin(0);
         var plane = this.add.sprite(400, 300, 'sheet', 'planeBlue1.png').play('plane');
     }    
 
@@ -41,5 +42,9 @@ document.addEventListener('deviceready', function() {
             canvas.style.width = (height * ratio) + "px";
             canvas.style.height = height + "px";
         }
+    }
+
+    function update() {
+        this.bg.tilePositionX += 5;
     }
 });
